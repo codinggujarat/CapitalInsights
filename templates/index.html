@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tata Capital - Personal Loan Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Enhanced CSS for dark mode with complete card support -->
+    <style id="dark-mode-styles">
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #1d4ed8;
+            --border-color: #475569;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --hover-bg: #334155;
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 40%, var(--bg-tertiary) 100%) !important;
+            color: var(--text-primary);
+        }
+
+        .dark-mode .main-container {
+            background: rgba(15, 23, 42, 0.95) !important;
+            border: 1px solid rgba(71, 85, 105, 0.4) !important;
+        }
+
+        .dark-mode .header {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.4) !important;
+        }
+
+        .dark-mode .company-info h1 {
+            color: var(--text-primary) !important;
+        }
+
+        .dark-mode .company-info p {
+            color: var(--text-secondary) !important;
+        }
+
+        .dark-mode .sidebar {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+            border-left: 1px solid rgba(71, 85, 105, 0.4) !important;
+        }
+
+        .dark-mode .main-title {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+            border-bottom: 1px solid rgba(71, 85, 105, 0.4) !important;
+        }
+
+        .dark-mode .main-title h2 {
+            color: var(--text-primary) !important;
+        }
+
+        .dark-mode .main-title p {
+            color: var(--text-secondary) !important;
+        }
+
+        .dark-mode .feature {
+            background: rgba(30, 41, 59, 0.8) !important;
+            border: 1px solid rgba(71, 85, 105, 0.5) !important;
+            color: var(--text-secondary) !important;
+        }
+
+        .dark-mode .feature:hover {
+            background: rgba(51, 65, 85, 0.95) !important;
+            border-color: rgba(59, 130, 246, 0.2) !important;
+        }
+
+        .dark-mode .chat-container {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%) !important;
+            border: 1px solid rgba(71, 85, 105, 0.4) !important;
+        }
+
+        .dark-mode .chat-header {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), #1e40af) !important;
+        }
+
+        .dark-mode .message-content {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .dark-mode .message.user .message-content {
+            background: linear-gradient(135deg, var(--bg-tertiary), #475569) !important;
+        }
+
+        .dark-mode .message-input {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .dark-mode .message-input:focus {
+            border-color: var(--accent-primary) !important;
+            background: var(--bg-primary) !important;
+        }
+
+        .dark-mode .progress-section,
+        .dark-mode .agents-section {
+            color: var(--text-primary) !important;
+        }
+
+        /* Enhanced card styling for dark mode */
+        .dark-mode .timeline-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.9)) !important;
+            border: 1px solid rgba(71, 85, 105, 0.6) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        .dark-mode .timeline-content:hover {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.98), rgba(15, 23, 42, 0.95)) !important;
+            border-color: rgba(59, 130, 246, 0.3) !important;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark-mode .timeline-agent-name {
+            color: var(--text-primary) !important;
+        }
+
+        .dark-mode .timeline-agent-desc {
+            color: var(--text-secondary) !important;
+        }
+
+        .dark-mode .timeline-progress {
+            color: var(--text-secondary) !important;
+        }
+
+        .dark-mode .progress-bar {
+            background: var(--bg-tertiary) !important;
+        }
+
+        .dark-mode .progress-fill {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+        }
+
+        .dark-mode .agent-item {
+            border-bottom: 1px solid rgba(71, 85, 105, 0.8) !important;
+        }
+
+        .dark-mode .agent-item:hover {
+            background: rgba(30, 41, 59, 0.5) !important;
+        }
+
+        .dark-mode .agent-name {
+            color: var(--text-primary) !important;
+        }
+
+        .dark-mode .agent-desc {
+            color: var(--text-secondary) !important;
+        }
+
+        /* Status badges in dark mode */
+        .dark-mode .timeline-status.active {
+            background: linear-gradient(135deg, #431c00 0%, #7c2d12 50%, #9a3412 100%) !important;
+            color: #fed7aa !important;
+            border: 2px solid #ea580c !important;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3) !important;
+        }
+
+        .dark-mode .timeline-status.processing {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #172554 100%) !important;
+            color: #bfdbfe !important;
+            border: 2px solid #3b82f6 !important;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+        }
+
+        .dark-mode .timeline-status.complete {
+            background: linear-gradient(135deg, #052e16 0%, #166534 50%, #14532d 100%) !important;
+            color: #dcfce7 !important;
+            border: 2px solid #22c55e !important;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3) !important;
+        }
+
+        .dark-mode .timeline-status.pending {
+            background: linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%) !important;
+            color: #d1d5db !important;
+            border: 2px solid #6b7280 !important;
+            box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2) !important;
+        }
+
+        /* Timeline dots in dark mode */
+        .dark-mode .timeline-dot {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)) !important;
+            border: 3px solid var(--bg-primary) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        }
+
+        .dark-mode .timeline-dot.active {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%) !important;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4) !important;
+            border: 3px solid rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .dark-mode .timeline-dot.processing {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, #1e40af 100%) !important;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+            border: 3px solid rgba(59, 130, 246, 0.3) !important;
+        }
+
+        .dark-mode .timeline-dot.complete {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%) !important;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+            border: 3px solid rgba(16, 185, 129, 0.3) !important;
+        }
+
+        /* Agent icons in dark mode */
+        .dark-mode .timeline-agent-icon {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .dark-mode .timeline-agent-icon.master {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 50%, #1e40af 100%) !important;
+            border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        }
+
+        .dark-mode .timeline-agent-icon.sales {
+            background: linear-gradient(135deg, #475569 0%, #334155 50%, #1e293b 100%) !important;
+            border: 2px solid rgba(100, 116, 139, 0.3) !important;
+        }
+
+        .dark-mode .timeline-agent-icon.verification {
+            background: linear-gradient(135deg, #b45309 0%, #92400e 50%, #7c2d12 100%) !important;
+            border: 2px solid rgba(245, 158, 11, 0.3) !important;
+        }
+
+        .dark-mode .timeline-agent-icon.underwriting {
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 50%, #7f1d1d 100%) !important;
+            border: 2px solid rgba(239, 68, 68, 0.3) !important;
+        }
+
+        .dark-mode .timeline-agent-icon.sanction {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%) !important;
+            border: 2px solid rgba(139, 92, 246, 0.3) !important;
+        }
+
+        /* Progress bars in dark mode */
+        .dark-mode .timeline-progress-bar {
+            background: var(--bg-tertiary) !important;
+        }
+
+        .dark-mode .timeline-progress-fill {
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)) !important;
+        }
+
+        /* Chat elements in dark mode */
+        .dark-mode .chat-messages {
+            background: var(--bg-primary) !important;
+        }
+
+        .dark-mode .message-avatar {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .dark-mode .bot-avatar {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+        }
+
+        .dark-mode .user-avatar {
+            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)) !important;
+        }
+
+        .dark-mode .chat-input {
+            border-top: 1px solid var(--border-color) !important;
+        }
+
+        /* Feature icons in dark mode */
+        .dark-mode .feature-icon.secure {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)) !important;
+        }
+
+        .dark-mode .feature-icon.instant {
+            background: linear-gradient(135deg, #059669, #047857) !important;
+        }
+
+        .dark-mode .feature-icon.support {
+            background: linear-gradient(135deg, #b45309, #92400e) !important;
+        }
+
+        /* Logo in dark mode */
+        .dark-mode .logo {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%) !important;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5) !important;
+        }
+
+        /* Instant approval badge in dark mode */
+        .dark-mode .instant-approval {
+            background: linear-gradient(135deg, #052e16, #064e3b) !important;
+            color: #6ee7b7 !important;
+            border: 1px solid rgba(16, 185, 129, 0.4) !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 40%, #f1f5f9 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.02) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow:
+                0 0 60px rgba(0, 0, 0, 0.08),
+                0 10px 40px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .main-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2), transparent);
+        }
+
+        .chat-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 450px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-left: 1px solid rgba(226, 232, 240, 0.4);
+            padding: 28px;
+            overflow-y: auto;
+            box-shadow: -2px 0 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            padding: 32px 36px;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            right: 25%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15), transparent);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+        }
+
+        .company-info h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 3px;
+            letter-spacing: -0.025em;
+        }
+
+        .company-info p {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .instant-approval {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            color: #166534;
+            padding: 10px 18px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(167, 243, 208, 0.6);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .instant-approval:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
+        }
+
+        .main-title {
+            text-align: center;
+            padding: 48px 32px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+            position: relative;
+        }
+
+        .main-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.2), transparent);
+        }
+
+        .main-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        .main-title .highlight {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-title p {
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.7;
+            max-width: 550px;
+            margin: 0 auto 36px;
+            font-weight: 400;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #475569;
+            font-weight: 500;
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover .feature-icon {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon.secure {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .feature-icon.instant {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .feature-icon.support {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .chat-container {
+            flex: 1;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+            margin: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(226, 232, 240, 0.4);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #1e40af);
+            color: white;
+            padding: 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            position: relative;
+        }
+
+        .chat-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .chat-header-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            font-size: 18px;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-header-info h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            letter-spacing: -0.025em;
+        }
+
+        .chat-header-info p {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            max-height: 450px;
+            background: #ffffff;
+        }
+
+        .message {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            animation: messageSlideIn 0.3s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            order: -1;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .bot-avatar {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .user-avatar {
+            background: linear-gradient(135deg, #64748b, #475569);
+        }
+
+        .message-content {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            max-width: 75%;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .message-content:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .message-time {
+            font-size: 10px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            font-size: 14px;
+            outline: none;
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .message-input:focus {
+            border-color: #3b82f6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .send-button {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            border-radius: 14px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            font-size: 16px;
+        }
+
+        .send-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .progress-section {
+            margin-bottom: 30px;
+        }
+
+        .progress-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            letter-spacing: -0.025em;
+        }
+
+        .progress-bar {
+            background: #f1f5f9;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            height: 100%;
+            width: 25%;
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .agents-section {
+            margin-bottom: 30px;
+        }
+
+        .agents-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+            letter-spacing: -0.025em;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(241, 245, 249, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .agent-item:hover {
+            background: rgba(248, 250, 252, 0.5);
+            border-radius: 12px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .agent-item:last-child {
+            border-bottom: none;
+        }
+
+        .agent-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: white;
+        }
+
+        .agent-icon.master {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+
+        .agent-icon.sales {
+            background: #64748b;
+        }
+
+        .agent-icon.verification {
+            background: #f59e0b;
+        }
+
+        .agent-icon.underwriting {
+            background: #ef4444;
+        }
+
+        .agent-icon.sanction {
+            background: #8b5cf6;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 3px;
+            letter-spacing: -0.025em;
+        }
+
+        .agent-desc {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .agent-status {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .agent-status.complete {
+            background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            color: #166534;
+            border: 1px solid #22c55e;
+        }
+
+        .agent-status.processing {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            color: #1e40af;
+            border: 1px solid #3b82f6;
+            animation: pulse 2s infinite;
+        }
+
+        .agent-status.active {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+
+        .agent-status.pending {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #3b82f6, #e2e8f0);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding-left: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(4px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 12px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .timeline-dot.active {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
+            animation: pulse-timeline 2s infinite;
+            border: 3px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .timeline-dot.processing {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+            animation: pulse-timeline 2s infinite;
+            border: 3px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .timeline-dot.complete {
+            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            border: 3px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .timeline-dot.complete::after {
+            content: '\2713';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 8px;
+            font-weight: bold;
+        }
+
+        @keyframes pulse-timeline {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9));
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), rgba(16, 185, 129, 0.3), transparent);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-content:hover::before {
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), rgba(16, 185, 129, 0.5), transparent);
+        }
+
+        .timeline-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.4);
+        }
+
+        .timeline-agent-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timeline-agent-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-agent-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-agent-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-agent-icon:hover::before {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+        }
+
+        .timeline-agent-icon.master {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .timeline-agent-icon.sales {
+            background: linear-gradient(135deg, #64748b 0%, #475569 50%, #334155 100%);
+            border: 2px solid rgba(100, 116, 139, 0.3);
+        }
+
+        .timeline-agent-icon.verification {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+            border: 2px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .timeline-agent-icon.underwriting {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .timeline-agent-icon.sanction {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 50%, #6d28d9 100%);
+            border: 2px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .timeline-agent-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.025em;
+        }
+
+        .timeline-agent-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .timeline-status {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-status::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+            transition: all 0.3s ease;
+        }
+
+        .timeline-status:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-status.active {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 50%, #fcd34d 100%);
+            color: #92400e;
+            border: 2px solid #f59e0b;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .timeline-status.processing {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+            color: #1e40af;
+            border: 2px solid #3b82f6;
+            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        .timeline-status.complete {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 50%, #86efac 100%);
+            color: #166534;
+            border: 2px solid #22c55e;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .timeline-status.pending {
+            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 50%, #e5e7eb 100%);
+            color: #6b7280;
+            border: 2px solid #d1d5db;
+            box-shadow: 0 2px 8px rgba(107, 114, 128, 0.2);
+        }
+
+        .timeline-progress {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .timeline-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #f1f5f9;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+
+        .timeline-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 20px;
+            font-style: italic;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: -1;
+                max-height: 350px;
+            }
+
+            .features {
+                gap: 20px;
+            }
+
+            .chat-container {
+                margin: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Main Chat Section -->
+        <div class="chat-section">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo-section">
+                    <div class="logo">
+                        <i class="fas fa-university" style="font-size: 26px;"></i>
+                    </div>
+                    <div class="company-info">
+                        <h1>Tata Capital</h1>
+                        <p>AI-Powered Loan Assistant</p>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="instant-approval">
+                        <i class="fas fa-check-circle" style="font-size: 16px;"></i> Instant Approval
+                    </div>
+                    <!-- Dark/Light Mode Toggle Button -->
+                    <button id="theme-toggle" class="send-button"
+                        style="width: auto; padding: 0 15px; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-moon"></i> <span id="theme-text">Dark Mode</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Title Section -->
+            <div class="main-title">
+                <h2>Get Your Personal Loan in <span class="highlight">Minutes, Not Days</span></h2>
+                <p>Experience our revolutionary AI-powered loan process. From conversation to sanction letter - all
+                    handled by intelligent agents working together for you.</p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon secure">
+                            <i class="fas fa-shield-alt" style="font-size: 16px;"></i>
+                        </div>
+                        Secure & Verified
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon instant">
+                            <i class="fas fa-bolt" style="font-size: 16px;"></i>
+                        </div>
+                        Instant Pre-approval
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon support">
+                            <i class="fas fa-users" style="font-size: 16px;"></i>
+                        </div>
+                        Multi-Agent Support
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-header-icon">
+                        <i class="fas fa-comments" style="font-size: 20px;"></i>
+                    </div>
+                    <div class="chat-header-info">
+                        <h3>Tata Capital Loan Assistant</h3>
+                        <p id="connectionStatus">Currently with Master Agent</p>
+                    </div>
+                </div>
+
+                <div id="chatMessages" class="chat-messages">
+                    <div class="message bot">
+                        <div class="message-avatar bot-avatar">
+                            <i class="fas fa-robot" style="font-size: 18px;"></i>
+                        </div>
+                        <div class="message-content">
+                            Hi! Welcome to Tata Capital Personal Loans. I'm here to help you get the perfect loan for
+                            your needs. May I have your phone number to get started?
+                            <div class="message-time">8:03:20 PM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="typingIndicator" class="typing-indicator">
+                    AI Assistant is typing...
+                </div>
+
+                <div class="chat-input">
+                    <div class="input-container">
+                        <input type="text" id="messageInput" class="message-input" placeholder="Type your message..."
+                            maxlength="500">
+                        <button id="sendButton" class="send-button" type="button">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Progress Section -->
+            <div class="progress-section">
+                <div class="progress-title">Loan Application Progress</div>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-info">
+                    <span id="currentPhase">Current Phase: Greeting</span>
+                    <span id="progressPercent">17%</span>
+                </div>
+            </div>
+
+            <!-- Agents Section -->
+            <div class="agents-section">
+                <div class="agents-title">Agent Orchestration</div>
+
+                <div class="timeline-container">
+                    <div class="timeline-line"></div>
+
+                    <div class="timeline-item" id="masterAgent">
+                        <div class="timeline-dot active"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-agent-info">
+                                    <div class="timeline-agent-icon master">
+                                        <i class="fas fa-user-tie" style="font-size: 18px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="timeline-agent-name">Master Agent</div>
+                                        <div class="timeline-agent-desc">Orchestrates the entire loan process</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-status active">Active</div>
+                            </div>
+                            <div class="timeline-progress">
+                                Phase Progress
+                                <div class="timeline-progress-bar">
+                                    <div class="timeline-progress-fill" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="salesAgent">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-agent-info">
+                                    <div class="timeline-agent-icon sales">
+                                        <i class="fas fa-handshake" style="font-size: 18px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="timeline-agent-name">Sales Agent</div>
+                                        <div class="timeline-agent-desc">Handles loan negotiations and terms</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-status pending">Pending</div>
+                            </div>
+                            <div class="timeline-progress">
+                                Phase Progress
+                                <div class="timeline-progress-bar">
+                                    <div class="timeline-progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="verificationAgent">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-agent-info">
+                                    <div class="timeline-agent-icon verification">
+                                        <i class="fas fa-search" style="font-size: 18px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="timeline-agent-name">Verification Agent</div>
+                                        <div class="timeline-agent-desc">Verifies KYC and customer details</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-status pending">Pending</div>
+                            </div>
+                            <div class="timeline-progress">
+                                Phase Progress
+                                <div class="timeline-progress-bar">
+                                    <div class="timeline-progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="underwritingAgent">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-agent-info">
+                                    <div class="timeline-agent-icon underwriting">
+                                        <i class="fas fa-chart-line" style="font-size: 18px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="timeline-agent-name">Underwriting Agent</div>
+                                        <div class="timeline-agent-desc">Credit assessment and approval</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-status pending">Pending</div>
+                            </div>
+                            <div class="timeline-progress">
+                                Phase Progress
+                                <div class="timeline-progress-bar">
+                                    <div class="timeline-progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item" id="sanctionAgent">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <div class="timeline-agent-info">
+                                    <div class="timeline-agent-icon sanction">
+                                        <i class="fas fa-file-contract" style="font-size: 18px;"></i>
+                                    </div>
+                                    <div>
+                                        <div class="timeline-agent-name">Sanction Agent</div>
+                                        <div class="timeline-agent-desc">Generates sanction letter</div>
+                                    </div>
+                                </div>
+                                <div class="timeline-status pending">Pending</div>
+                            </div>
+                            <div class="timeline-progress">
+                                Phase Progress
+                                <div class="timeline-progress-bar">
+                                    <div class="timeline-progress-fill" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enhanced theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeText = document.getElementById('theme-text');
+        const themeIcon = themeToggle.querySelector('i');
+        const body = document.body;
+
+        // Check for saved theme preference or respect OS setting
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Apply saved theme or default to light mode
+        const applyTheme = (isDark) => {
+            if (isDark) {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                themeText.textContent = 'Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                themeText.textContent = 'Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        };
+
+        // Initialize theme based on saved preference or OS setting
+        if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+            applyTheme(true);
+        }
+
+        // Toggle theme function
+        themeToggle.addEventListener('click', function () {
+            const isCurrentlyDark = body.classList.contains('dark-mode');
+            applyTheme(!isCurrentlyDark);
+        });
+
+        // Initialize Socket.IO
+        const socket = io();
+
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+        const connectionStatus = document.getElementById('connectionStatus');
+        const currentPhase = document.getElementById('currentPhase');
+        const progressPercent = document.getElementById('progressPercent');
+        const progressFill = document.querySelector('.progress-fill');
+
+        let isConnected = false;
+        let currentAgent = 'master';
+        let progress = 17;
+
+        // Agent workflow phases
+        const agentWorkflow = {
+            master: { phase: 'Initial Greeting', progress: 17 },
+            sales: { phase: 'Loan Consultation', progress: 35 },
+            verification: { phase: 'Document Verification', progress: 55 },
+            underwriting: { phase: 'Credit Assessment', progress: 75 },
+            sanction: { phase: 'Sanction Generation', progress: 95 }
+        };
+
+        // Agent status management
+        function updateAgentStatus(agentId, status) {
+            const agent = document.getElementById(agentId + 'Agent');
+            if (agent) {
+                const statusElement = agent.querySelector('.timeline-status');
+                const dotElement = agent.querySelector('.timeline-dot');
+                const progressFill = agent.querySelector('.timeline-progress-fill');
+
+                // Update status badge
+                statusElement.className = 'timeline-status ' + status;
+
+                // Update timeline dot
+                dotElement.className = 'timeline-dot ' + status;
+
+                switch (status) {
+                    case 'active':
+                        statusElement.textContent = 'Active';
+                        progressFill.style.width = '100%';
+                        break;
+                    case 'processing':
+                        statusElement.textContent = 'Processing';
+                        progressFill.style.width = '50%';
+                        break;
+                    case 'complete':
+                        statusElement.textContent = 'Complete';
+                        progressFill.style.width = '100%';
+                        break;
+                    case 'pending':
+                        statusElement.textContent = 'Pending';
+                        progressFill.style.width = '0%';
+                        break;
+                }
+            }
+        }
+
+        // Update progress bar and phase
+        function updateProgress(phase, percent) {
+            currentPhase.textContent = `Current Phase: ${phase}`;
+            progressPercent.textContent = `${percent}%`;
+            progressFill.style.width = `${percent}%`;
+        }
+
+        // Simulate agent handoff
+        function handoffToAgent(agentName) {
+            // Set previous agent to complete
+            if (currentAgent !== 'master') {
+                updateAgentStatus(currentAgent, 'complete');
+            }
+
+            // Set new agent to active
+            currentAgent = agentName;
+            updateAgentStatus(agentName, 'processing');
+
+            // Update progress
+            const workflow = agentWorkflow[agentName];
+            if (workflow) {
+                updateProgress(workflow.phase, workflow.progress);
+                progress = workflow.progress;
+            }
+
+            // Update connection status
+            const agentNames = {
+                master: 'Master Agent',
+                sales: 'Sales Agent',
+                verification: 'Verification Agent',
+                underwriting: 'Underwriting Agent',
+                sanction: 'Sanction Agent'
+            };
+
+            connectionStatus.textContent = `Connected - ${agentNames[agentName]} Active`;
+        }
+
+        // Simulate workflow progression based on message content
+        function processWorkflow(message) {
+            const lowerMessage = message.toLowerCase();
+
+            // Trigger different agents based on conversation content
+            if (lowerMessage.includes('loan amount') || lowerMessage.includes('interest rate')) {
+                setTimeout(() => handoffToAgent('sales'), 1500);
+            }
+            else if (lowerMessage.includes('document') || lowerMessage.includes('kyc') || lowerMessage.includes('verify')) {
+                setTimeout(() => handoffToAgent('verification'), 1500);
+            }
+            else if (lowerMessage.includes('credit') || lowerMessage.includes('income') || lowerMessage.includes('employment')) {
+                setTimeout(() => handoffToAgent('underwriting'), 1500);
+            }
+            else if (lowerMessage.includes('approve') || lowerMessage.includes('sanction') || lowerMessage.includes('final')) {
+                setTimeout(() => handoffToAgent('sanction'), 1500);
+            }
+        }
+
+        // Connection status handlers
+        socket.on('connect', function () {
+            isConnected = true;
+            connectionStatus.textContent = 'Connected - Master Agent Active';
+        });
+
+        socket.on('disconnect', function () {
+            isConnected = false;
+            connectionStatus.textContent = 'Disconnected';
+        });
+
+        // Message handlers
+        socket.on('bot_message', function (data) {
+            hideTyping();
+            addMessage('bot', data.message, data.agent, data.timestamp);
+
+            // Update agent status based on server response
+            if (data.agent) {
+                const agentMap = {
+                    'Master Agent': 'master',
+                    'Sales Agent': 'sales',
+                    'Verification Agent': 'verification',
+                    'Underwriting Agent': 'underwriting',
+                    'Sanction Agent': 'sanction'
+                };
+
+                const agentId = agentMap[data.agent];
+                if (agentId && agentId !== currentAgent) {
+                    handoffToAgent(agentId);
+                }
+            }
+        });
+
+        // Send message function
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message && isConnected) {
+                addMessage('user', message, 'You', new Date().toISOString());
+                socket.emit('user_message', { message: message });
+                messageInput.value = '';
+                showTyping();
+
+                // Process workflow for demo purposes
+                processWorkflow(message);
+            }
+        }
+
+        // Event listeners
+        sendButton.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function addMessage(type, content, agent, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = `message-avatar ${type}-avatar`;
+            avatarDiv.innerHTML = type === 'bot' ? '<i class="fas fa-robot" style="font-size: 18px;"></i>' : '<i class="fas fa-user" style="font-size: 18px;"></i>';
+
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+
+            const messageText = document.createElement('div');
+            messageText.innerHTML = content.replace(/\n/g, '<br>');
+            contentDiv.appendChild(messageText);
+
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            const time = new Date().toLocaleTimeString();
+            timeDiv.textContent = time;
+            contentDiv.appendChild(timeDiv);
+
+            if (type === 'bot') {
+                messageDiv.appendChild(avatarDiv);
+                messageDiv.appendChild(contentDiv);
+            } else {
+                messageDiv.appendChild(contentDiv);
+                messageDiv.appendChild(avatarDiv);
+            }
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        // Auto-focus on message input
+        messageInput.focus();
+
+        // Initialize with demo data
+        setTimeout(() => {
+            updateAgentStatus('master', 'active');
+        }, 1000);
+    </script>
+</body>
+
+</html>

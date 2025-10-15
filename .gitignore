@@ -1,0 +1,73 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+myloan_env/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Databases
+*.db
+*.sqlite3
+
+# Logs and debug files
+*.log
+*.pot
+*.pyc
+*.pyo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode / IDE settings
+.vscode/
+.idea/
+
+# Python cache and build
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Flask specific
+instance/
+.cache/
+*.pid
+
+# Test / coverage
+.coverage
+.tox/
+.nox/
+.pytest_cache/
+
+# Temporary or generated files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.orig
+
+# Reports / Documents
+*.pdf
+*.md~
+*.rtf
+*.docx
+
+# Ignore backup or local hidden files
+.local/
