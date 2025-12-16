@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 # Use GPT-4o for reliable API responses
 from openai import OpenAI
@@ -19,22 +20,29 @@ def get_agent_response(system_prompt, user_message, context=None, response_forma
     if context:
         messages.insert(1, {"role": "system", "content": f"Context: {context}"})
     
-    try:
-        if response_format == "json":
-            response = openai_client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages,
-                response_format={"type": "json_object"}
-            )
-        else:
-            response = openai_client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages
-            )
-        
-        return response.choices[0].message.content
-    except Exception as e:
-        return f"Error getting AI response: {str(e)}"
+    # Retry logic for API calls
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            if response_format == "json":
+                response = openai_client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=messages,
+                    response_format={"type": "json_object"}
+                )
+            else:
+                response = openai_client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=messages
+                )
+            
+            return response.choices[0].message.content
+        except Exception as e:
+            if attempt < max_retries - 1:  # Don't sleep on the last attempt
+                time.sleep(2 ** attempt)  # Exponential backoff
+                continue
+            else:
+                return f"Error getting AI response: {str(e)}"
 
 def analyze_conversation_intent(conversation_history, current_message):
     """
@@ -51,4 +59,15 @@ def analyze_conversation_intent(conversation_history, current_message):
         "extracted_info": {}
     }"""
     
-    return get_agent_response(system_prompt, current_message, context, "json")
+    # Use retry logic for intent analysis as well
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = get_agent_response(system_prompt, current_message, context, "json")
+            return response
+        except Exception as e:
+            if attempt < max_retries - 1:
+                time.sleep(2 ** attempt)
+                continue
+            else:
+                return None

@@ -71,6 +71,9 @@ class MasterAgent:
     
     def _handle_initial_stage(self, user_message, session_data, intent_data):
         """Handle initial conversation and move to sales pitch"""
+        # Extract information even in initial stage
+        customer_data = session_data.get('customer_data', {})
+        
         if any(word in user_message.lower() for word in ['loan', 'money', 'borrow', 'finance', 'need', 'help']):
             session_data['current_stage'] = 'sales_pitch'
             return self.sales_agent.handle_sales_conversation(user_message, session_data, intent_data)

@@ -151,13 +151,28 @@ def handle_file_upload(data):
     # Update session
     session.update(response.get('session_updates', {}))
 
-    emit('bot_message', {
-        'message': response['message'],
-        'timestamp': datetime.now().isoformat(),
-        'agent': 'Underwriting Agent',
-        'loan_approved': response.get('loan_approved', False),
-        'sanction_letter_url': response.get('sanction_letter_url')
-    })
+    # Check if loan was approved and we should move to sanction letter stage
+    if response.get('session_updates', {}).get('current_stage') == 'sanction_letter':
+        # Generate sanction letter immediately
+        sanction_response = sanction_letter_agent.generate_sanction_letter(session)
+        # Update session with sanction letter updates
+        session.update(sanction_response.get('session_updates', {}))
+        
+        emit('bot_message', {
+            'message': sanction_response['message'],
+            'timestamp': datetime.now().isoformat(),
+            'agent': sanction_response['agent'],
+            'loan_approved': sanction_response.get('loan_approved', False),
+            'sanction_letter_url': sanction_response.get('sanction_letter_url')
+        })
+    else:
+        emit('bot_message', {
+            'message': response['message'],W
+            'timestamp': datetime.now().isoformat(),
+            'agent': 'Underwriting Agent',
+            'loan_approved': response.get('loan_approved', False),
+            'sanction_letter_url': response.get('sanction_letter_url')
+        })
 
 # ------------------ Main ------------------
 if __name__ == '__main__':
