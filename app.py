@@ -167,7 +167,7 @@ def handle_file_upload(data):
         })
     else:
         emit('bot_message', {
-            'message': response['message'],W
+            'message': response['message'],
             'timestamp': datetime.now().isoformat(),
             'agent': 'Underwriting Agent',
             'loan_approved': response.get('loan_approved', False),

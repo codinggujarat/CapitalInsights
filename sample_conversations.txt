@@ -1,0 +1,39 @@
+Initial Inquiry
+
+User: Hi, I'm interested in getting a personal loan.
+
+Loan Purpose Discussion
+
+User: I need a loan for home renovation.
+
+Personal Information Collection
+
+User: My name is Aman Nayak, and I live in Bhubaneswar.
+
+Contact Information
+
+User: My phone number is 8320723850.
+
+Email Collection
+
+User: aman.nayak@email.com
+
+Income Information
+
+User: My monthly income is around ₹45,000.
+
+Loan Amount Request
+
+User: I'm looking for ₹2,00,000 for my home renovation.
+
+Verification Process
+
+User: Sure, go ahead.
+
+Loan Approval Notification
+
+User: That's great to hear!
+
+Sanction Letter Generation
+
+User: Thank you so much!
